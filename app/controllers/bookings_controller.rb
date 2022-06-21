@@ -1,14 +1,20 @@
 class BookingsController < ApplicationController
-  before_action :booking, only: [:show, :destroy]
+  before_action :set_buddy, only: [:new, :create]
 
   def new
     @booking = Booking.new
   end
 
+  def show
+    set_booking
+  end
+
   def create
     @booking = Booking.new(booking_params)
+    @booking.user = current_user
+    @booking.buddy = set_buddy
     if @booking.save
-      redirect_to root_path
+      redirect_to booking_path(@booking)
     else
       render :new
     end
@@ -26,6 +32,10 @@ class BookingsController < ApplicationController
 
   def set_booking
     @booking = Booking.find(params[:id])
+  end
+
+  def set_buddy
+    @buddy = Buddy.find(params[:buddy_id])
   end
 
   def booking_params
