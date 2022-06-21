@@ -1,4 +1,4 @@
-<h3>add booking for  <%= Buddy.first.name %> </h3>
+<h3>add booking for  <%= @buddy.name %> </h3>
         <%= simple_form_for [@buddy, @booking] do |f| %>
           <%= f.input :start_date, placeholder: 'Enter a start date' %>
           <%= f.input :end_date, placeholder: 'Enter a end date' %>
