@@ -1,3 +1,7 @@
+<h1>Buddies</h1>
 <% @buddies.each do |buddy| %>
-  <%= buddy.name %>
+<%= link_to buddy.name, buddy %>
 <% end %>
+
+<%= link_to 'New Buddy', new_buddy_path, :class => "btn btn-primary" %>
+<%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
