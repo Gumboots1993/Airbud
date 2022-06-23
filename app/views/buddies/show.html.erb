@@ -3,3 +3,4 @@
 <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
 <%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
 <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
+<%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
