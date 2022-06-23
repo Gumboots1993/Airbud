@@ -1,0 +1,6 @@
+<h1>Thanks for requesting a booking with, <%= @booking.buddy.name %>
+from <%= @booking.start_date %>
+until <%= @booking.end_date %></h1>
+<p> your booking is pending, awaitng <%= @booking.buddy.name %>'s approval</p>
+
+<%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
