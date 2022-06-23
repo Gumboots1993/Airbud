@@ -22,6 +22,19 @@ class BuddiesController < ApplicationController
     end
   end
 
+  def edit
+    @buddy = Buddy.find(params[:id])
+  end
+
+  def update
+    @buddy = Buddy.find(params[:id])
+    if @buddy.update(buddy_params)
+      redirect_to @buddy, notice: 'Buddy successfully updated'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def buddy_params
