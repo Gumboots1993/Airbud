@@ -35,6 +35,12 @@ class BuddiesController < ApplicationController
     end
   end
 
+  def destroy
+    @buddy = Buddy.find(params[:id])
+    @buddy.destroy
+    redirect_to buddies_path
+  end
+
   private
 
   def buddy_params
