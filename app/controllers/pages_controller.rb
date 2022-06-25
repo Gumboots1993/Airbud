@@ -6,4 +6,8 @@ class PagesController < ApplicationController
     @user_buddies = current_user.buddies
     @bookings = current_user.bookings
   end
+
+  def my_bookings
+    @bookings = current_user.bookings
+  end
 end
