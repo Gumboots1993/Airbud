@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :buddies do
     resources :bookings, only: [:new, :create]
   end
-  resources :bookings, only: [:destroy, :show]
+  resources :bookings, only: [:destroy, :show, :edit, :update]
   get 'my_listings', to: 'pages#my_listings'
   get 'my_bookings', to: 'pages#my_bookings'
   patch 'bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
