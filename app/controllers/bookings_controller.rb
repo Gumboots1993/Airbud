@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
   def accept
     @booking.status = "Accepted"
     if @booking.save
-      redirect_to dashboard_path
+      redirect_to my_listings_path
     else
       render :new
     end
@@ -46,7 +46,7 @@ class BookingsController < ApplicationController
   def decline
     @booking.status = "Declined"
     if @booking.save
-      redirect_to dashboard_path
+      redirect_to my_listings_path
     else
       render :new
     end

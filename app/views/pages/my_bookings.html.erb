@@ -1,0 +1,21 @@
+<h1>My Bookings</h1>
+<p>These are all the buddies you have booked!</p>
+<div class="cards">
+  <% @bookings.each do |booking| %>
+  <div class="card-buddy">
+    <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
+    <ul>
+    <li>
+    <p> <strong>Booking Duration </strong> </p>
+      <p> <strong>Start date: </strong> <%= booking.start_date %>
+          <strong>End date: </strong> <%= booking.start_date %> </p>
+      <br>
+      <p>  <strong>status: </strong> <%= booking.status  %></p>
+      <br>
+    </li>
+    </ul>
+  </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
