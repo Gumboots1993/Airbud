@@ -1,0 +1,8 @@
+<h3>Edit booking for  <%= Buddy.find(@booking.buddy_id).name%> </h3>
+        <%= simple_form_for [@buddy, @booking] do |f| %>
+          <%= f.input :start_date, placeholder: 'Enter a start date' %>
+          <%= f.input :end_date, placeholder: 'Enter a end date' %>
+          <%= f.submit class: 'btn btn-flat' %>
+        <% end %>
+
+<%# <%= link_to 'Back to Buddy page', buddy_path(@buddy), :class => "btn btn-primary" %> %>
