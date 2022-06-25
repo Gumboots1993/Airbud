@@ -1,5 +1,27 @@
-<h1><%= @buddy.name %></h1>>
-
+<h1><%= @buddy.name %></h1>
+<p><strong>Buddy Type: </strong><%= @buddy.buddy_type %><p>
+<p><strong>Skills:</strong><%= @buddy.skills %><p>
+<p><strong>Description: </strong><%= @buddy.description %><p>
+<p><strong>Activities: </strong><%= @buddy.activities %><p>
+<p><strong>Rate: </strong><%= @buddy.rate %><p>
+<br>
 <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
 <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
 <%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
+<br>
+<br>
+<h2> These are all <%= @buddy.name.capitalize %>'s accepted bookings! </h2>
+<p> <%= @buddy.name.capitalize %> also has
+    <% counter = 0 %>
+    <% Booking.where("buddy_id = ?", @buddy.id).each do |booking| %>
+    <% booking.status == "pending" ? counter =+ 1 : counter %>
+    <% end %>
+    <strong> <%= counter %> </strong>
+    pending requests! </p>
+ <% Booking.where("buddy_id = ?", @buddy.id).each do |booking|%>
+    <% if booking.status == "Accepted" %>
+    <p> <strong>Booking Duration: </strong>
+          <strong>Start date: </strong> <%= booking.start_date %>
+          <strong>End date: </strong> <%= booking.start_date %> </p>
+      <%end%>
+    <% end %>

@@ -1,6 +1,6 @@
 class Buddy < ApplicationRecord
   belongs_to :user
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :name, :buddy_type, :skills, :description, :activities, :rate, presence: true
   #length of description
