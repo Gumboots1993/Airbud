@@ -1,8 +1,10 @@
-<h1>Thanks for requesting a booking with, <%= @booking.buddy.name %>
-from <%= @booking.start_date %>
-until <%= @booking.end_date %></h1>
+<h1>Booking Details </h1>
+
+<h2>Buddy: <%= link_to @booking.buddy.name, buddy_path(@booking.buddy_id)%></h2>
+<h2>Booking start: <%= @booking.start_date %></h2>
+<h2>Booking end: <%= @booking.end_date %></h2>
 <% if @booking.status == "pending" %>
-  <p> your booking is pending, awaitng <%= @booking.buddy.name %>'s approval</p>
+  <p> your booking is pending, awaiting <%= @booking.buddy.name %>'s approval</p>
 <% elsif @booking.status == "Accepted" %>
   <p> your booking has been accepted</p>
 <% else %>
@@ -10,6 +12,4 @@ until <%= @booking.end_date %></h1>
 <% end %>
 
 <%= link_to 'Edit Booking', edit_booking_path(@booking), :class => "btn btn-primary"%>
-
-
-
+<%= link_to "Back to Bookings", my_bookings_path, :class => "btn btn-primary" %>
