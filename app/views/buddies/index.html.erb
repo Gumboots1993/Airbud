@@ -1,9 +1,17 @@
-<h1>All Buddies</h1>
+<div class="container">
+<h1>Buddies Near You</h1>
+
 <% @buddies.each do |buddy| %>
-<%= link_to buddy.name, buddy %>
+<div class="cards">
+<div class="card" style="background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg)">
+<%= link_to buddy.name, buddy, class: "a-primary" %>
+</div>
+</div>
 <% end %>
 
+
 <%= link_to 'New Buddy', new_buddy_path, :class => "btn btn-primary" %>
-<%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
+<%= link_to 'Dashboard - Your Listed Buddies', dashboard_path, :class => "btn btn-primary" %>
+</div>
 <%= link_to 'My listings', my_listings_path, :class => "btn btn-primary" %>
 <%= link_to 'My bookings', my_bookings_path, :class => "btn btn-primary" %>
