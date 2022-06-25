@@ -1,7 +1,15 @@
 <div class="px-3 border-bottom navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/karr-images/master/white_logo_red_circle.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <div class="logo_and_tag">
+        <div class="logo">
+          <%= image_tag "logo.png" %>
+        </div>
+        <div class="title_and_tag_line">
+          <h1> airbud </h1>
+          <p> Find the perfect buddy for you! </p>
+        </div>
+      </div>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +20,16 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "List a Buddy", new_buddy_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "My Listings", my_listings_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "My Bookings", my_bookings_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
