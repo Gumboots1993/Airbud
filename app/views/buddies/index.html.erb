@@ -3,7 +3,7 @@
 <div class="cards">
 <% @buddies.each do |buddy| %>
 
-<div class="card" style="background-image: url(https://ichef.bbci.co.uk/news/976/cpsprodpb/17638/production/_124800859_gettyimages-817514614.jpg)">
+<div class="card" style="background-image: url(<%= buddy.url %>)">
 <%= link_to buddy.name, buddy, class: "a-primary" %>
 </div>
 
