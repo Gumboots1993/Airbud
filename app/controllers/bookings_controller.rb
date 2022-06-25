@@ -59,6 +59,11 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to root_path
   end
 
   private

@@ -1,10 +1,15 @@
-<%= simple_form_for @buddy do |f| %>
-  <%= f.input :name  %>
-  <%= f.input :buddy_type  %>
-  <%= f.input :skills  %>
-  <%= f.input :description %>
-  <%= f.input :activities  %>
-  <%= f.input :rate %>
-  <%= f.button :submit, :class => "btn btn-primary" %>
-<% end %>
-<%= link_to 'Back', buddy_path, :class => "btn btn-primary" %>
+<div class="container">
+  <div class="form">
+    <%= simple_form_for @buddy do |f| %>
+      <%= f.input :name  %>
+      <%= f.input :buddy_type  %>
+      <%= f.input :skills  %>
+      <%= f.input :description %>
+      <%= f.input :activities  %>
+      <%= f.input :url  %>
+      <%= f.input :rate %>
+      <%= f.button :submit, :class => "btn btn-primary" %>
+    <% end %>
+    <%= link_to 'Back', buddy_path, :class => "btn btn-primary" %>
+  </div>
+</div>
