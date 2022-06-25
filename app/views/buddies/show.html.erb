@@ -1,10 +1,22 @@
+<div class="container">
 <h1><%= @buddy.name %></h1>
-<p><strong>Buddy Type: </strong><%= @buddy.buddy_type %><p>
-<p><strong>Skills:</strong><%= @buddy.skills %><p>
-<p><strong>Description: </strong><%= @buddy.description %><p>
-<p><strong>Activities: </strong><%= @buddy.activities %><p>
-<p><strong>Rate: </strong><%= @buddy.rate %><p>
+
+  <div class="cards">
+      <div class="card_buddy">
+      <p><strong>Buddy Type: </strong><%= @buddy.buddy_type %><p>
+      <p><strong>Skills:</strong><%= @buddy.skills %><p>
+      <p><strong>Description: </strong><%= @buddy.description %><p>
+      <p><strong>Activities: </strong><%= @buddy.activities %><p>
+      <p><strong>Rate: </strong><%= @buddy.rate %><p>
+    </div>
+    <div class="card_buddy">
+      <div class="card" style="background-image: url(<%= @buddy.url %>)">
+      </div>
+    </div>
+  </div>
+</div>
 <br>
+<div class="container">
 <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
 <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
 <%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
@@ -25,3 +37,4 @@
           <strong>End date: </strong> <%= booking.start_date %> </p>
       <%end%>
     <% end %>
+</div>
