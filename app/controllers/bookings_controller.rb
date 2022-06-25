@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_buddy, only: [:new, :create]
+  before_action :set_booking, only: [:accept, :decline]
 
   def new
     @booking = Booking.new
@@ -22,10 +23,20 @@ class BookingsController < ApplicationController
 
   def accept
     @booking.status = "Accepted"
+    if @booking.save
+      redirect_to dashboard_path
+    else
+      render :new
+    end
   end
 
   def decline
     @booking.status = "Declined"
+    if @booking.save
+      redirect_to dashboard_path
+    else
+      render :new
+    end
   end
 
   private

@@ -1,7 +1,8 @@
-<h1>Buddies</h1>
+<h1>All Buddies</h1>
 <% @buddies.each do |buddy| %>
 <%= link_to buddy.name, buddy %>
 <% end %>
 
 <%= link_to 'New Buddy', new_buddy_path, :class => "btn btn-primary" %>
 <%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
+<%= link_to 'Dashboard - Your Listed Buddies', dashboard_path, :class => "btn btn-primary" %>

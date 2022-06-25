@@ -1,0 +1,26 @@
+<h1>Dashboard</h1>
+<p>These are all the buddies you have listed!</p>
+<div class="cards">
+  <% @user_buddies.each do |user_buddy| %>
+  <div class="card-buddy">
+    <h2> Buddy Name: <%= link_to user_buddy.name, user_buddy %> </h2>
+    <ul>
+    <% Booking.where("buddy_id = ?", user_buddy.id).each do |booking|%>
+    <li>
+    <p> <strong>Booking Duration </strong> </p>
+      <p> <strong>Start date: </strong> <%= booking.start_date %>
+          <strong>End date: </strong> <%= booking.start_date %> </p>
+      <br>
+      <p>  <strong>status: </strong> <%= booking.status  %></p>
+      <br>
+      <%= link_to 'Accept?', accept_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+      <%= link_to 'Decline?', decline_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+    </li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'New Buddy', new_buddy_path, :class => "btn btn-primary" %>
+<%= link_to 'Index/Home', buddies_path, :class => "btn btn-primary" %>
