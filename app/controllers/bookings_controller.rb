@@ -55,7 +55,7 @@ class BookingsController < ApplicationController
   def cancel
     @booking.status = "Cancelled"
     if @booking.save
-      redirect_to my_listings_path
+      redirect_back(fallback_location: root_path)
     else
       render :new
     end
