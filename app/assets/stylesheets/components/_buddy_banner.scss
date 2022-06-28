@@ -1,0 +1,38 @@
+.buddy_banner {
+  background-color: $pink;
+  color: $white;
+}
+
+.buddy_banner img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  vertical-align: middle;
+
+}
+
+.buddy_banner h1 {
+  color: $white;
+}
+
+.buddy_banner h2 {
+  color: $white;
+}
+
+.buddy_banner .image_and_text {
+  display: flex;
+}
+
+.buddy_banner div {
+  background-color: $pink;
+}
+
+.buddy_banner .section {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}

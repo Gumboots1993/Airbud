@@ -6,6 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Buddy.new(name: "Fido", buddy_type: "dog", skills: "barks", description: "is cute", activities: "Walkies", url:"https://thegoldfishtank.com/wp-content/uploads/2020/12/bubble-eye-goldfish-1-768x576.jpg", location:"berlin" rate: 100, user_id: 1)
-Booking.new(start_date: "28/6/2022", end_date: "28/6/2022", status: "pending", user_id: 1, buddy_id: 1)
-User.new(email: "beth@gmail.com", encrypted_password: "password" )
+require 'faker'
+require "json"
+require "rest-client"
+
+Booking.destroy_all
+Buddy.destroy_all
+User.destroy_all
+
+user = User.create!(email: "beth@gmail.com", password: "password" )
+
+4.times do
+  response = RestClient.get "https://dog.ceo/api/breeds/image/random"
+  repos = JSON.parse(response)
+  buddy = Buddy.create!(name: Faker::Creature::Dog.name , buddy_type: Faker::Creature::Dog.breed , skills: Faker::Hobby.activity, description: Faker::Creature::Dog.meme_phrase , activities: Faker::Creature::Dog.sound , url: repos["message"] , location: Faker::Address.city , rate: rand(300), user_id: user.id)
+  Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "pending", user_id: user.id, buddy_id: buddy.id)
+  Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "declined", user_id: user.id, buddy_id: buddy.id)
+  Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Accepted", user_id: user.id, buddy_id: buddy.id)
+  Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Cancelled", user_id: user.id, buddy_id: buddy.id)
+end
+
+user2 = User.create!(email: "moo@gmail.com", password: "password" )
+4.times do
+  response = RestClient.get "https://dog.ceo/api/breeds/image/random"
+  repos = JSON.parse(response)
+    buddy = Buddy.create!(name: Faker::Creature::Dog.name , buddy_type: Faker::Creature::Dog.breed , skills: Faker::Hobby.activity, description: Faker::Creature::Dog.meme_phrase , activities: Faker::Creature::Dog.sound , url: repos["message"] , location: Faker::Address.city, rate: rand(300), user_id: user2.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "pending", user_id: user2.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Declined", user_id: user2.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Accepted", user_id: user2.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Cancelled", user_id: user2.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "pending", user_id: user.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Declined", user_id: user.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Accepted", user_id: user.id, buddy_id: buddy.id)
+    Booking.create!(start_date: "28/6/2022", end_date: "28/6/2022", status: "Cancelled", user_id: user.id, buddy_id: buddy.id)
+end
+
+20.times do
+  response = RestClient.get "https://dog.ceo/api/breeds/image/random"
+  repos = JSON.parse(response)
+    buddy = Buddy.create!(name: Faker::Creature::Dog.name , buddy_type: Faker::Creature::Dog.breed , skills: Faker::Hobby.activity, description: Faker::Creature::Dog.meme_phrase , activities: Faker::Creature::Dog.sound , url: repos["message"] , location: Faker::Address.full_address , rate: rand(300), user_id: user.id)
+end
