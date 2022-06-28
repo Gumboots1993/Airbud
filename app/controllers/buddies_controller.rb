@@ -2,6 +2,13 @@ class BuddiesController < ApplicationController
 
   def index
     @buddies = Buddy.all
+    @markers = @buddies.geocoded.map do |buddy|
+      {
+        lat: buddy.latitude,
+        lng: buddy.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { buddy: buddy })
+      }
+    end
   end
 
   def show
@@ -44,6 +51,6 @@ class BuddiesController < ApplicationController
   private
 
   def buddy_params
-    params.require(:buddy).permit(:name, :buddy_type, :skills, :description, :activities, :rate)
+    params.require(:buddy).permit(:name, :buddy_type, :skills, :description, :activities, :rate, :location)
   end
 end
