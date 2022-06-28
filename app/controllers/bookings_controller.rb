@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_buddy, only: [:new, :create]
-  before_action :set_booking, only: [:accept, :decline]
+  before_action :set_booking, only: [:accept, :decline, :cancel]
 
   def new
     @booking = Booking.new
@@ -50,6 +50,21 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def cancel
+    @booking.status = "Cancelled"
+    if @booking.save
+      redirect_back(fallback_location: root_path)
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to root_path
   end
 
   private

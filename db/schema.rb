@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_06_25_052455) do
     t.string "location"
     t.float "latitude"
     t.float "longitude"
+    t.string "url"
     t.index ["user_id"], name: "index_buddies_on_user_id"
   end
 
