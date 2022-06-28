@@ -1,11 +1,22 @@
 <div class="container">
-<h1>Buddies Near You</h1>
-<div class="cards">
-<% @buddies.each do |buddy| %>
+  <h1>Buddies Near You</h1>
+  <div class="cards">
+    <% @buddies.each do |buddy| %>
 
-<div class="card" style="background-image: url(<%= buddy.url %>)">
-<%= link_to buddy.name, buddy, class: "a-primary" %>
+  <div class="card bg-transparent border-0">
+
+    <img src= <%= buddy.url %> class="buddy-img" alt="" width="100%;" height="100%;">
+
+  <div class="card-body">
+    <div class="card-text">
+      <h2><%= link_to buddy.name, buddy, :class => "stretched-link" %></h2>
+      <p> <%= buddy.buddy_type %></p>
+      <p>$<%= buddy.rate %>/hour</p>
+    </div>
+  </div>
 </div>
 
+
 <% end %>
+</div>
 </div>
