@@ -1,82 +1,67 @@
-<div class="container">
-<h1>My Bookings</h1>
-<p>These are all the buddies you have booked!</p>
+ <div class="my-bookings">
+  <h1>My Bookings</h1>
+  <p>These are all the buddies you have booked!</p>
 
-
-  <h2>Pending Bookings</h2>
-  <div class="cards">
-    <% @bookings.each do |booking| %>
-      <% if booking.status == 'pending' %>
-        <div class="card-buddy">
-          <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-              <p> <strong>Booking Duration </strong> </p>
-              <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-              <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-              <br>
-              <p>  <strong>status: </strong> <%= booking.status  %></p>
-              <br>
-        </div>
+    <h3>Pending Bookings</h2>
+    <div class="cards">
+      <% @bookings.each do |booking| %>
+        <% if booking.status == 'pending' %>
+          <div class="card-buddy-bookings">
+            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
+                <p> <strong>Booking Duration </strong> </p>
+                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                <p>  <strong>status: </strong> <%= booking.status  %></p>
+          </div>
+        <% end %>
       <% end %>
+    </div>
+
+    <h3>Accepted Bookings</h2>
+    <div class="cards">
+      <% @bookings.each do |booking| %>
+        <% if booking.status == 'Accepted' %>
+          <div class="card-buddy-bookings">
+            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
+                <p> <strong>Booking Duration </strong> </p>
+                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                <p>  <strong>status: </strong> <%= booking.status  %></p>
+                <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+
+
     <% end %>
-  </div>
-</div>
+    </div>
 
-<div class="container">
-  <h2>Accepted Bookings</h2>
-  <div class="cards">
-    <% @bookings.each do |booking| %>
-      <% if booking.status == 'Accepted' %>
-        <div class="card-buddy">
-          <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-              <p> <strong>Booking Duration </strong> </p>
-              <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-              <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-              <br>
-              <p>  <strong>status: </strong> <%= booking.status  %></p>
-              <br>
-              <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
-        </div>
+    <h3>Declined Bookings</h2>
+    <div class="cards">
+      <% @bookings.each do |booking| %>
+        <% if booking.status == 'Declined' %>
+          <div class="card-buddy-bookings">
+            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
+                <p> <strong>Booking Duration </strong> </p>
+                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                <p>  <strong>status: </strong> <%= booking.status  %></p>
+          </div>
+        <% end %>
       <% end %>
+    </div>
 
-
-  <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <h2>Declined Bookings</h2>
-  <div class="cards">
-    <% @bookings.each do |booking| %>
-      <% if booking.status == 'Declined' %>
-        <div class="card-buddy">
-          <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-              <p> <strong>Booking Duration </strong> </p>
-              <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-              <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-              <br>
-              <p>  <strong>status: </strong> <%= booking.status  %></p>
-              <br>
-        </div>
+    <h3>Cancelled Bookings</h2>
+    <div class="cards">
+      <% @bookings.each do |booking| %>
+        <% if booking.status == 'Cancelled' %>
+          <div class="card-buddy-bookings">
+            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
+                <p> <strong>Booking Duration </strong> </p>
+                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                <p>  <strong>status: </strong> <%= booking.status  %></p>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <h2>Cancelled Bookings</h2>
-  <div class="cards">
-    <% @bookings.each do |booking| %>
-      <% if booking.status == 'Cancelled' %>
-        <div class="card-buddy">
-          <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-              <p> <strong>Booking Duration </strong> </p>
-              <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-              <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-              <br>
-              <p>  <strong>status: </strong> <%= booking.status  %></p>
-              <br>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
 </div>
