@@ -32,7 +32,6 @@ export default class extends Controller {
       customMarker.style.height = "25px"
       customMarker.style.borderRadius = "50%"
       customMarker.style.cursor = "pointer"
-      customMarker.style.
 
       new mapboxgl.Marker(customMarker)
         .setLngLat([ marker.lng, marker.lat ])
