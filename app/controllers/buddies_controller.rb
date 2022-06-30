@@ -10,7 +10,8 @@ class BuddiesController < ApplicationController
         {
           lat: buddy.latitude,
           lng: buddy.longitude,
-          info_window: render_to_string(partial: "info_window", locals: { buddy: buddy })
+          info_window: render_to_string(partial: "info_window", locals: { buddy: buddy }),
+          image_url: helpers.asset_url(buddy.url)
         }
       end
     end

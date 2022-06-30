@@ -3,7 +3,7 @@
     <h1>New Buddy</h1>
     <%= simple_form_for @buddy do |f| %>
       <%= f.input :name  %>
-      <%= f.input :buddy_type  %>
+      <%= f.input :buddy_type, :collection => %w[Dog Cat Human Object Other] %>
       <%= f.input :skills  %>
       <%= f.input :description %>
       <%= f.input :activities  %>
