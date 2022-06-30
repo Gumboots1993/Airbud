@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="form">
+      <%= simple_form_for [@booking, @review] do |f| %>
+      <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
+      <%= f.input :comment, placeholder: 'Leave a comment' %>
+      <%= f.button :submit, :class => "btn btn-primary" %>
+      <% end %>
+  </div>
+  <%= link_to 'Back to booking page', booking_path(@booking), :class => "btn btn-primary" %>
+</div>
