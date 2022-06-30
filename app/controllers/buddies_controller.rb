@@ -1,13 +1,17 @@
 class BuddiesController < ApplicationController
 
   def index
-    @buddies = Buddy.all
-    @markers = @buddies.geocoded.map do |buddy|
-      {
-        lat: buddy.latitude,
-        lng: buddy.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { buddy: buddy })
-      }
+    if params[:query].present?
+      @buddies = Buddy.where("buddy_type ILIKE ?", "%#{params[:query]}%")
+    else
+      @buddies = Buddy.all
+      @markers = @buddies.geocoded.map do |buddy|
+        {
+          lat: buddy.latitude,
+          lng: buddy.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { buddy: buddy })
+        }
+      end
     end
   end
 
