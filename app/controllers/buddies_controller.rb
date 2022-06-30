@@ -1,19 +1,29 @@
 class BuddiesController < ApplicationController
 
   def index
-    @buddies = Buddy.all
-    @markers = @buddies.geocoded.map do |buddy|
-      {
-        lat: buddy.latitude,
-        lng: buddy.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { buddy: buddy }),
-        image_url: helpers.asset_url(buddy.url)
-      }
+    if params[:query].present?
+      sql_query = "buddy_type ILIKE :query OR activities ILIKE :query OR description ILIKE :query"
+      @buddies = Buddy.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @buddies = Buddy.all
+      @markers = @buddies.geocoded.map do |buddy|
+        {
+          lat: buddy.latitude,
+          lng: buddy.longitude,
+          info_window: render_to_string(partial: "info_window", locals: { buddy: buddy }),
+          image_url: helpers.asset_url(buddy.url)
+        }
+      end
     end
   end
 
   def show
     @buddy = Buddy.find(params[:id])
+    @marker = [{
+        lat: @buddy.latitude,
+        lng: @buddy.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { buddy: @buddy })
+      }]
   end
 
   def new

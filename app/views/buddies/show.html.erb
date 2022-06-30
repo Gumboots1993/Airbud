@@ -13,17 +13,30 @@
 </div>
 <br>
 <div class="container">
+  <div class="d-flex justify-content-between">
+    <div class="buddy-info">
       <p><strong>Buddy Type: </strong><%= @buddy.buddy_type %><p>
       <p><strong>Skills:</strong><%= @buddy.skills %><p>
       <p><strong>Description: </strong><%= @buddy.description %><p>
       <p><strong>Activities: </strong><%= @buddy.activities %><p>
       <p><strong>Rate: </strong><%= @buddy.rate %><p>
+      <div class="buddy-buttons">
+        <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
+        <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
+        <%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
+      </div>
+
+    </div>
+    <div style="width: 70%; height: auto; border-radius: 10px;"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @marker.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+
 </div>
 <br>
 <div class="container">
-<%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
-<%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
-<%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
 <br>
 <br>
 <h2> These are all <%= @buddy.name.capitalize %>'s accepted bookings! </h2>
