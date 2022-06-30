@@ -2,7 +2,8 @@ class BuddiesController < ApplicationController
 
   def index
     if params[:query].present?
-      @buddies = Buddy.where("buddy_type ILIKE ?", "%#{params[:query]}%")
+      sql_query = "buddy_type ILIKE :query OR activities ILIKE :query OR description ILIKE :query"
+      @buddies = Buddy.where(sql_query, query: "%#{params[:query]}%")
     else
       @buddies = Buddy.all
       @markers = @buddies.geocoded.map do |buddy|
