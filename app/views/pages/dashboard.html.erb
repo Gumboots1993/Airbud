@@ -14,7 +14,7 @@
       <p>  <strong>status: </strong> <%= booking.status  %></p>
       <br>
       <%= link_to 'Accept?', accept_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
-      <%= link_to 'Decline?', decline_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+      <%= link_to 'Decline?', decline_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
     </li>
     <% end %>
     </ul>

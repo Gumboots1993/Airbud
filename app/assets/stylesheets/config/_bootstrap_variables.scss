@@ -14,7 +14,7 @@ $font-size-base: 1rem;
 $body-color: $gray;
 $primary:    $pink;
 $success:    $green;
-$info:       $yellow;
+$info:       $gray2;
 $danger:     $red;
 $warning:    $orange;
 
@@ -22,9 +22,9 @@ $warning:    $orange;
 $border-radius:    25px;
 $border-radius-lg: 25px;
 $border-radius-sm: 25px;
-$btn-border-radius: 25px;
-$btn-border-radius:           25px;
-$btn-border-radius-sm:        25px;
-$btn-border-radius-lg:        25px;
 
 // Override other variables below!
+
+.btn btn-override btn-primary {
+  $border-radius:    25px;
+  }

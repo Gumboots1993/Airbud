@@ -22,8 +22,8 @@
       <p><strong>Rate: </strong><%= @buddy.rate %><p>
       <div class="buddy-buttons">
         <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
-        <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-primary" %>
-        <%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-primary"  %>
+        <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-info" %>
+        <%= link_to 'Delete', buddy_path(@buddy), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-info"  %>
       </div>
 
     </div>
