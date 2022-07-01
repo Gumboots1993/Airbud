@@ -27,7 +27,7 @@
                 <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
                 <p> <strong>End date: </strong> <%= booking.start_date %> </p>
                 <p>  <strong>status: </strong> <%= booking.status  %></p>
-                <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+                <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
           </div>
         <% end %>
 
