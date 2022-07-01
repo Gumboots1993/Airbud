@@ -1,18 +1,35 @@
 <div class="container">
-  <div class="form">
-    <h1>New Buddy</h1>
-    <%= simple_form_for @buddy do |f| %>
-      <%= f.input :name  %>
-      <%= f.input :buddy_type, :collection => %w[Dog Cat Human Object Other] %>
-      <%= f.input :skills  %>
-      <%= f.input :description %>
-      <%= f.input :activities  %>
-      <%= f.input :location  %>
-      <%= f.input :url  %>
-      <%= f.input :rate %>
-      <%= f.button :submit, :class => "btn btn-primary" %>
-    <% end %>
+  <h1>Time to list a new buddy</h1>
+  <br>
+  <br>
+    <div class="form">
+      <%= simple_form_for @buddy do |f| %>
+      <div class="form_wrapper">
+        <div class="form_div">
+          <h3>The Basics:</h3>
+          <%= f.input :name  %>
+          <%= f.input :rate %>
+          <%= f.input :location  %>
+          <%= f.input :url,  label: "Link to profile picture" %>
+          <%= f.input :buddy_type, label: "What kind of buddy are you?", :collection => %w[Dog Cat Human Object Other] %>
+        </div>
+        <div class="form_div">
+          <h3>Why is your buddy is the best:</h3>
+          <%= f.input :skills  %>
+          <%= f.input :description %>
+          <%= f.input :activities  %>
+          <br>
+          <br>
+          <%= f.button :submit, :class => "btn btn-primary" %>
+          <%= link_to 'Back', buddies_path, :class => "btn btn-info" %>
+        </div>
+            <div class="pic_of_doggo">
+      <%= image_tag "Doggo.png" %>
+    </div>
+      </div>
+      <% end %>
 
-    <%= link_to 'Back', buddies_path, :class => "btn btn-primary" %>
+
   </div>
 </div>
+<br>
