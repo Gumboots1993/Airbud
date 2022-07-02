@@ -2,7 +2,7 @@ class BuddiesController < ApplicationController
 
   def index
     if params[:query].present?
-      sql_query = "buddy_type ILIKE :query OR activities ILIKE :query OR description ILIKE :query"
+      sql_query = "buddy_type ILIKE :query OR activities ILIKE :query OR description ILIKE :query OR skills ILIKE :query"
       @buddies = Buddy.where(sql_query, query: "%#{params[:query]}%")
     else
       @buddies = Buddy.all
