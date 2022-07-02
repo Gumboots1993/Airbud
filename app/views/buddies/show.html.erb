@@ -19,7 +19,7 @@
       <p><strong>Skills:</strong><%= @buddy.skills %><p>
       <p><strong>Description: </strong><%= @buddy.description %><p>
       <p><strong>Activities: </strong><%= @buddy.activities %><p>
-      <p><strong>Rate: </strong><%= @buddy.rate %><p>
+      <p><strong>Rate: </strong>$<%= @buddy.rate %> /per day<p>
       <div class="buddy-buttons">
         <%= link_to 'Book me', new_buddy_booking_path(@buddy), :class => "btn btn-primary" %>
         <%= link_to 'Edit Buddy', edit_buddy_path, :class => "btn btn-info" %>
@@ -39,7 +39,7 @@
 <div class="container">
   <div class="d-flex ">
     <div class="buddy-bookings me-5">
-      <h2> These are all <%= @buddy.name.capitalize %>'s accepted bookings! </h2>
+      <h2> <%= @buddy.name.capitalize %>'s booking history! </h2>
       <p> <%= @buddy.name.capitalize %> also has
       <% counter = 0 %>
       <% @buddy.bookings.each do |booking| %>
@@ -49,7 +49,7 @@
       pending requests! </p>
       <% @buddy.bookings.each do |booking|%>
       <% if booking.status == "Accepted" %>
-      <p> <strong>Booking Duration: </strong>
+      <p> <strong><%= link_to "Booking Duration:", booking, :class => "stretched-link" %> </strong>
             <strong>Start date: </strong> <%= booking.start_date %>
             <strong>End date: </strong> <%= booking.start_date %> </p>
         <%end%>
