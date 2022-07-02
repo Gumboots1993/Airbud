@@ -1,67 +1,118 @@
  <div class="my-bookings">
   <h1>My Bookings</h1>
   <p>These are all the buddies you have booked!</p>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="Pending-tab" data-bs-toggle="tab" data-bs-target="#Pending" type="button" role="tab" aria-controls="Pending" aria-selected="true"><strong>Pending</strong></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Accepted-tab" data-bs-toggle="tab" data-bs-target="#Accepted" type="button" role="tab" aria-controls="Accepted" aria-selected="false"><strong>Accepted</strong></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Declined-tab" data-bs-toggle="tab" data-bs-target="#Declined" type="button" role="tab" aria-controls="Declined" aria-selected="false"><strong>Declined</strong></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Cancelled-tab" data-bs-toggle="tab" data-bs-target="#Cancelled" type="button" role="tab" aria-controls="Cancelled" aria-selected="false"><strong>Cancelled</strong></button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="Pending" role="tabpanel" aria-labelledby="Pending-tab">
+          <% @bookings.each do |booking| %>
+            <% if booking.status == 'pending'%>
+              <div class="card bg-transparent border-0 my-4" style="max-width: 700px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src= <%= Buddy.find(booking.buddy_id).url %> class="buddy-img img-fluid rounded-start" alt="" style="width: 250px; height: 200px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <div class="card-text">
+                        <h2> <%= link_to Buddy.find(booking.buddy_id).name, booking, :class => "stretched-link" %> </h2>
+                        <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                        <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                        <p>  <strong>Status: </strong> <%= booking.status  %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
+      <div class="tab-pane fade" id="Accepted" role="tabpanel" aria-labelledby="Accepted-tab">
+        <% @bookings.each do |booking| %>
+            <% if booking.status == 'Accepted'%>
+              <div class="d-flex">
+                <div class="card bg-transparent border-0 my-4" style="width: 700px;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src= <%= Buddy.find(booking.buddy_id).url %> class="buddy-img img-fluid rounded-start" alt="" style="width: 100%; height: 200px;">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body ">
+                        <div class="card-text">
+                          <h2> <%= link_to Buddy.find(booking.buddy_id).name, booking, :class => "stretched-link"%> </h2>
+                          <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                          <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                          <p>  <strong>Status: </strong> <%= booking.status  %></p>
+                          <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info text-white position-absolute" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="align-self-center">
 
-    <h3>Pending Bookings</h2>
-    <div class="cards">
-      <% @bookings.each do |booking| %>
-        <% if booking.status == 'pending' %>
-          <div class="card-buddy-bookings">
-            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-                <p> <strong>Booking Duration </strong> </p>
-                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-                <p>  <strong>status: </strong> <%= booking.status  %></p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <h3>Accepted Bookings</h2>
-    <div class="cards">
-      <% @bookings.each do |booking| %>
-        <% if booking.status == 'Accepted' %>
-          <div class="card-buddy-bookings">
-            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-                <p> <strong>Booking Duration </strong> </p>
-                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-                <p>  <strong>status: </strong> <%= booking.status  %></p>
-                <%= link_to 'Cancel?', cancel_booking_path(booking), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
-          </div>
-        <% end %>
-
-
-    <% end %>
-    </div>
-
-    <h3>Declined Bookings</h2>
-    <div class="cards">
-      <% @bookings.each do |booking| %>
-        <% if booking.status == 'Declined' %>
-          <div class="card-buddy-bookings">
-            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-                <p> <strong>Booking Duration </strong> </p>
-                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-                <p>  <strong>status: </strong> <%= booking.status  %></p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <h3>Cancelled Bookings</h2>
-    <div class="cards">
-      <% @bookings.each do |booking| %>
-        <% if booking.status == 'Cancelled' %>
-          <div class="card-buddy-bookings">
-            <h2> Buddy Name: <%= link_to Buddy.find(booking.buddy_id).name, booking %> </h2>
-                <p> <strong>Booking Duration </strong> </p>
-                <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
-                <p> <strong>End date: </strong> <%= booking.start_date %> </p>
-                <p>  <strong>status: </strong> <%= booking.status  %></p>
-          </div>
-        <% end %>
-      <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
+      <div class="tab-pane fade" id="Declined" role="tabpanel" aria-labelledby="Declined-tab">
+        <% @bookings.each do |booking| %>
+            <% if booking.status == 'Declined'%>
+              <div class="card bg-transparent border-0 my-4" style="max-width: 700px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src= <%= Buddy.find(booking.buddy_id).url %> class="buddy-img img-fluid rounded-start" alt="" style="width: 250px; height: 200px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <div class="card-text">
+                        <h2> <%= link_to Buddy.find(booking.buddy_id).name, booking, :class => "stretched-link" %> </h2>
+                        <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                        <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                        <p>  <strong>Status: </strong> <%= booking.status  %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
+      <div class="tab-pane fade" id="Cancelled" role="tabpanel" aria-labelledby="Cancelled-tab">
+        <% @bookings.each do |booking| %>
+            <% if booking.status == 'Cancelled'%>
+              <div class="card bg-transparent border-0 my-4" style="max-width: 700px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src= <%= Buddy.find(booking.buddy_id).url %> class="buddy-img img-fluid rounded-start" alt="" style="width: 250px; height: 200px;">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <div class="card-text">
+                        <h2> <%= link_to Buddy.find(booking.buddy_id).name, booking, :class => "stretched-link" %> </h2>
+                        <p> <strong>Start date: </strong> <%= booking.start_date %> </p>
+                        <p> <strong>End date: </strong> <%= booking.start_date %> </p>
+                        <p>  <strong>Status: </strong> <%= booking.status  %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
     </div>
 </div>
