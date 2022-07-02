@@ -16,7 +16,7 @@
   <div class="d-flex justify-content-between">
     <div class="buddy-info">
       <p><strong>Buddy Type: </strong><%= @buddy.buddy_type %><p>
-      <p><strong>Skills:</strong><%= @buddy.skills %><p>
+      <p><strong>Skills: </strong><%= @buddy.skills %><p>
       <p><strong>Description: </strong><%= @buddy.description %><p>
       <p><strong>Activities: </strong><%= @buddy.activities %><p>
       <p><strong>Rate: </strong>$<%= @buddy.rate %> /per day<p>
@@ -49,7 +49,7 @@
       pending requests! </p>
       <% @buddy.bookings.each do |booking|%>
       <% if booking.status == "Accepted" %>
-      <p> <strong><%= link_to "Booking Duration:", booking, :class => "stretched-link" %> </strong>
+      <p> <strong><%= link_to "Booking Duration:", booking %> </strong>
             <strong>Start date: </strong> <%= booking.start_date %>
             <strong>End date: </strong> <%= booking.start_date %> </p>
         <%end%>
