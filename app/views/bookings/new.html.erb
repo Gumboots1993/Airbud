@@ -1,11 +1,23 @@
 <div class="container">
-  <div class="form">
-    <h3>add booking for  <%= @buddy.name %> </h3>
-      <%= simple_form_for [@buddy, @booking] do |f| %>
-      <%= f.input :start_date, placeholder: 'Enter a start date' %>
-      <%= f.input :end_date, placeholder: 'Enter a end date' %>
-      <%= f.button :submit, :class => "btn btn-primary" %>
-      <% end %>
+  <div class="booking_page">
+    <h1>add booking for  <%= @buddy.name %></h1>
+    <br>
+      <div class="form">
+        <div class="form_wrapper">
+          <div>
+            <img src=<%= @buddy.url %>>
+          </div>
+          <div id='buddy-booking-dates' data-unavailable="<%= @buddy.unavailable_dates.to_json %>">
+            <% if current_user.id != @buddy.user_id  %>
+              <%= simple_form_for([@buddy, @booking]) do |f| %>
+                <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker", id: 'booking_start_date'} %>
+                <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker", id: 'booking_end_date'} %>
+                <%= f.submit "Book", class: "btn btn-primary" %>
+              <% end %>
+                <%= link_to 'Back', buddy_path(@buddy), :class => "btn btn-info" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
   </div>
-  <%= link_to 'Back to Buddy page', buddy_path(@buddy), :class => "btn btn-primary" %>
 </div>

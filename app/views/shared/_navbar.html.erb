@@ -12,7 +12,7 @@
       </div>
     <% end %>
 
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-around">
     <div>
     <%= form_tag root_path, method: :get do %>
       <%= text_field_tag :query,
@@ -21,8 +21,10 @@
         placeholder: "Find a bud"
       %>
     </div>
+    <div>
       <%= submit_tag "Search", class: "btn btn-primary rounded .ml-5" %>
       <% end %>
+    </div>
   </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
