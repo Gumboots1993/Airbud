@@ -9,7 +9,8 @@
 .mapboxgl-popup-content {
   text-align: center;
   font-family: "Open Sans", sans-serif;
-  width: 200px;
+  width: auto;
+  min-width: 200px;
   height: auto;
   align-content: center;
   text-align: center;
